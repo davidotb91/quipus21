@@ -17,9 +17,9 @@ import javax.swing.JPanel;
  *
  * @author david
  */
-public class proveedorPrueba extends JPanel {
+public class factura extends JPanel {
     
-    public proveedorPrueba() {
+    public factura() {
         initComponents();
         if (!Beans.isDesignTime()) {
             entityManager.getTransaction().begin();
@@ -37,16 +37,16 @@ public class proveedorPrueba extends JPanel {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("quipus21PU").createEntityManager();
-        query = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Proveedor p");
+        query = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT f FROM Factura f");
         list = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(query.getResultList());
         masterScrollPane = new javax.swing.JScrollPane();
         masterTable = new javax.swing.JTable();
-        idProveedorLabel = new javax.swing.JLabel();
-        rucProveedorLabel = new javax.swing.JLabel();
-        nombreProveedorLabel = new javax.swing.JLabel();
-        idProveedorField = new javax.swing.JTextField();
-        rucProveedorField = new javax.swing.JTextField();
-        nombreProveedorField = new javax.swing.JTextField();
+        idFacturaLabel = new javax.swing.JLabel();
+        idUsuarioLabel = new javax.swing.JLabel();
+        fechafacturaLabel = new javax.swing.JLabel();
+        idFacturaField = new javax.swing.JTextField();
+        idUsuarioField = new javax.swing.JTextField();
+        fechafacturaField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
         newButton = new javax.swing.JButton();
@@ -55,41 +55,41 @@ public class proveedorPrueba extends JPanel {
         FormListener formListener = new FormListener();
 
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, list, masterTable);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idProveedor}"));
-        columnBinding.setColumnName("Id Proveedor");
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idFactura}"));
+        columnBinding.setColumnName("Id Factura");
         columnBinding.setColumnClass(Integer.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${rucProveedor}"));
-        columnBinding.setColumnName("Ruc Proveedor");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nombreProveedor}"));
-        columnBinding.setColumnName("Nombre Proveedor");
-        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idUsuario}"));
+        columnBinding.setColumnName("Id Usuario");
+        columnBinding.setColumnClass(com.ec.entidades.Usuario.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${fechafactura}"));
+        columnBinding.setColumnName("Fechafactura");
+        columnBinding.setColumnClass(java.util.Date.class);
         bindingGroup.addBinding(jTableBinding);
 
         masterScrollPane.setViewportView(masterTable);
 
-        idProveedorLabel.setText("Id Proveedor:");
+        idFacturaLabel.setText("Id Factura:");
 
-        rucProveedorLabel.setText("Ruc Proveedor:");
+        idUsuarioLabel.setText("Id Usuario:");
 
-        nombreProveedorLabel.setText("Nombre Proveedor:");
+        fechafacturaLabel.setText("Fechafactura:");
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.idProveedor}"), idProveedorField, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.idFactura}"), idFacturaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
         bindingGroup.addBinding(binding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), idProveedorField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), idFacturaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.rucProveedor}"), rucProveedorField, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.idUsuario}"), idUsuarioField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
         bindingGroup.addBinding(binding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), rucProveedorField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), idUsuarioField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nombreProveedor}"), nombreProveedorField, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.fechafactura}"), fechafacturaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
         bindingGroup.addBinding(binding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), nombreProveedorField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), fechafacturaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
         saveButton.setText("Save");
@@ -124,14 +124,14 @@ public class proveedorPrueba extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idProveedorLabel)
-                    .addComponent(rucProveedorLabel)
-                    .addComponent(nombreProveedorLabel))
+                    .addComponent(idFacturaLabel)
+                    .addComponent(idUsuarioLabel)
+                    .addComponent(fechafacturaLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idProveedorField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .addComponent(rucProveedorField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .addComponent(nombreProveedorField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
+                    .addComponent(idFacturaField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                    .addComponent(idUsuarioField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                    .addComponent(fechafacturaField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -148,16 +148,16 @@ public class proveedorPrueba extends JPanel {
                 .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idProveedorLabel)
-                    .addComponent(idProveedorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idFacturaLabel)
+                    .addComponent(idFacturaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rucProveedorLabel)
-                    .addComponent(rucProveedorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idUsuarioLabel)
+                    .addComponent(idUsuarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreProveedorLabel)
-                    .addComponent(nombreProveedorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechafacturaLabel)
+                    .addComponent(fechafacturaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
@@ -176,16 +176,16 @@ public class proveedorPrueba extends JPanel {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             if (evt.getSource() == saveButton) {
-                proveedorPrueba.this.saveButtonActionPerformed(evt);
+                factura.this.saveButtonActionPerformed(evt);
             }
             else if (evt.getSource() == refreshButton) {
-                proveedorPrueba.this.refreshButtonActionPerformed(evt);
+                factura.this.refreshButtonActionPerformed(evt);
             }
             else if (evt.getSource() == newButton) {
-                proveedorPrueba.this.newButtonActionPerformed(evt);
+                factura.this.newButtonActionPerformed(evt);
             }
             else if (evt.getSource() == deleteButton) {
-                proveedorPrueba.this.deleteButtonActionPerformed(evt);
+                factura.this.deleteButtonActionPerformed(evt);
             }
         }
     }// </editor-fold>//GEN-END:initComponents
@@ -205,19 +205,19 @@ public class proveedorPrueba extends JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int[] selected = masterTable.getSelectedRows();
-        List<com.ec.entidades.Proveedor> toRemove = new ArrayList<com.ec.entidades.Proveedor>(selected.length);
+        List<com.ec.entidades.Factura> toRemove = new ArrayList<com.ec.entidades.Factura>(selected.length);
         for (int idx = 0; idx < selected.length; idx++) {
-            com.ec.entidades.Proveedor p = list.get(masterTable.convertRowIndexToModel(selected[idx]));
-            toRemove.add(p);
-            entityManager.remove(p);
+            com.ec.entidades.Factura f = list.get(masterTable.convertRowIndexToModel(selected[idx]));
+            toRemove.add(f);
+            entityManager.remove(f);
         }
         list.removeAll(toRemove);
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        com.ec.entidades.Proveedor p = new com.ec.entidades.Proveedor();
-        entityManager.persist(p);
-        list.add(p);
+        com.ec.entidades.Factura f = new com.ec.entidades.Factura();
+        entityManager.persist(f);
+        list.add(f);
         int row = list.size() - 1;
         masterTable.setRowSelectionInterval(row, row);
         masterTable.scrollRectToVisible(masterTable.getCellRect(row, 0, true));
@@ -230,9 +230,9 @@ public class proveedorPrueba extends JPanel {
         } catch (RollbackException rex) {
             rex.printStackTrace();
             entityManager.getTransaction().begin();
-            List<com.ec.entidades.Proveedor> merged = new ArrayList<com.ec.entidades.Proveedor>(list.size());
-            for (com.ec.entidades.Proveedor p : list) {
-                merged.add(entityManager.merge(p));
+            List<com.ec.entidades.Factura> merged = new ArrayList<com.ec.entidades.Factura>(list.size());
+            for (com.ec.entidades.Factura f : list) {
+                merged.add(entityManager.merge(f));
             }
             list.clear();
             list.addAll(merged);
@@ -243,18 +243,18 @@ public class proveedorPrueba extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteButton;
     private javax.persistence.EntityManager entityManager;
-    private javax.swing.JTextField idProveedorField;
-    private javax.swing.JLabel idProveedorLabel;
-    private java.util.List<com.ec.entidades.Proveedor> list;
+    private javax.swing.JTextField fechafacturaField;
+    private javax.swing.JLabel fechafacturaLabel;
+    private javax.swing.JTextField idFacturaField;
+    private javax.swing.JLabel idFacturaLabel;
+    private javax.swing.JTextField idUsuarioField;
+    private javax.swing.JLabel idUsuarioLabel;
+    private java.util.List<com.ec.entidades.Factura> list;
     private javax.swing.JScrollPane masterScrollPane;
     private javax.swing.JTable masterTable;
     private javax.swing.JButton newButton;
-    private javax.swing.JTextField nombreProveedorField;
-    private javax.swing.JLabel nombreProveedorLabel;
     private javax.persistence.Query query;
     private javax.swing.JButton refreshButton;
-    private javax.swing.JTextField rucProveedorField;
-    private javax.swing.JLabel rucProveedorLabel;
     private javax.swing.JButton saveButton;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
@@ -272,13 +272,13 @@ public class proveedorPrueba extends JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(proveedorPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(proveedorPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(proveedorPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(proveedorPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -286,7 +286,7 @@ public class proveedorPrueba extends JPanel {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 JFrame frame = new JFrame();
-                frame.setContentPane(new proveedorPrueba());
+                frame.setContentPane(new factura());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
                 frame.setVisible(true);

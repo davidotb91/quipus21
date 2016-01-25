@@ -6,13 +6,10 @@
 package com.ec.entidades;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -30,77 +27,78 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Rubro.findAll", query = "SELECT r FROM Rubro r"),
-    @NamedQuery(name = "Rubro.findByIdRubro", query = "SELECT r FROM Rubro r WHERE r.idRubro = :idRubro"),
-    @NamedQuery(name = "Rubro.findByNombreRubro", query = "SELECT r FROM Rubro r WHERE r.nombreRubro = :nombreRubro"),
-    @NamedQuery(name = "Rubro.findByValorMaximo", query = "SELECT r FROM Rubro r WHERE r.valorMaximo = :valorMaximo")})
+    @NamedQuery(name = "Rubro.findByIdrubroalcanzado", query = "SELECT r FROM Rubro r WHERE r.idrubroalcanzado = :idrubroalcanzado"),
+    @NamedQuery(name = "Rubro.findByNombrerubro", query = "SELECT r FROM Rubro r WHERE r.nombrerubro = :nombrerubro"),
+    @NamedQuery(name = "Rubro.findByValortotalrubro", query = "SELECT r FROM Rubro r WHERE r.valortotalrubro = :valortotalrubro"),
+    @NamedQuery(name = "Rubro.findByCodigorubro", query = "SELECT r FROM Rubro r WHERE r.codigorubro = :codigorubro")})
 public class Rubro implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_RUBRO")
-    private Integer idRubro;
-    @Basic(optional = false)
-    @Column(name = "NOMBRE_RUBRO")
-    private String nombreRubro;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @Column(name = "VALOR_MAXIMO")
-    private BigDecimal valorMaximo;
-    @OneToMany(mappedBy = "idRubro")
-    private Collection<FacturaRubro> facturaRubroCollection;
+    @Column(name = "IDRUBROALCANZADO")
+    private Integer idrubroalcanzado;
+    @Column(name = "NOMBRERUBRO")
+    private String nombrerubro;
+    @Column(name = "VALORTOTALRUBRO")
+    private String valortotalrubro;
+    @Column(name = "CODIGORUBRO")
+    private String codigorubro;
+    @OneToMany(mappedBy = "idrubroalcanzado")
+    private Collection<Facturaegreso> facturaegresoCollection;
 
     public Rubro() {
     }
 
-    public Rubro(Integer idRubro) {
-        this.idRubro = idRubro;
+    public Rubro(Integer idrubroalcanzado) {
+        this.idrubroalcanzado = idrubroalcanzado;
     }
 
-    public Rubro(Integer idRubro, String nombreRubro, BigDecimal valorMaximo) {
-        this.idRubro = idRubro;
-        this.nombreRubro = nombreRubro;
-        this.valorMaximo = valorMaximo;
+    public Integer getIdrubroalcanzado() {
+        return idrubroalcanzado;
     }
 
-    public Integer getIdRubro() {
-        return idRubro;
+    public void setIdrubroalcanzado(Integer idrubroalcanzado) {
+        this.idrubroalcanzado = idrubroalcanzado;
     }
 
-    public void setIdRubro(Integer idRubro) {
-        this.idRubro = idRubro;
+    public String getNombrerubro() {
+        return nombrerubro;
     }
 
-    public String getNombreRubro() {
-        return nombreRubro;
+    public void setNombrerubro(String nombrerubro) {
+        this.nombrerubro = nombrerubro;
     }
 
-    public void setNombreRubro(String nombreRubro) {
-        this.nombreRubro = nombreRubro;
+    public String getValortotalrubro() {
+        return valortotalrubro;
     }
 
-    public BigDecimal getValorMaximo() {
-        return valorMaximo;
+    public void setValortotalrubro(String valortotalrubro) {
+        this.valortotalrubro = valortotalrubro;
     }
 
-    public void setValorMaximo(BigDecimal valorMaximo) {
-        this.valorMaximo = valorMaximo;
+    public String getCodigorubro() {
+        return codigorubro;
+    }
+
+    public void setCodigorubro(String codigorubro) {
+        this.codigorubro = codigorubro;
     }
 
     @XmlTransient
-    public Collection<FacturaRubro> getFacturaRubroCollection() {
-        return facturaRubroCollection;
+    public Collection<Facturaegreso> getFacturaegresoCollection() {
+        return facturaegresoCollection;
     }
 
-    public void setFacturaRubroCollection(Collection<FacturaRubro> facturaRubroCollection) {
-        this.facturaRubroCollection = facturaRubroCollection;
+    public void setFacturaegresoCollection(Collection<Facturaegreso> facturaegresoCollection) {
+        this.facturaegresoCollection = facturaegresoCollection;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idRubro != null ? idRubro.hashCode() : 0);
+        hash += (idrubroalcanzado != null ? idrubroalcanzado.hashCode() : 0);
         return hash;
     }
 
@@ -111,7 +109,7 @@ public class Rubro implements Serializable {
             return false;
         }
         Rubro other = (Rubro) object;
-        if ((this.idRubro == null && other.idRubro != null) || (this.idRubro != null && !this.idRubro.equals(other.idRubro))) {
+        if ((this.idrubroalcanzado == null && other.idrubroalcanzado != null) || (this.idrubroalcanzado != null && !this.idrubroalcanzado.equals(other.idrubroalcanzado))) {
             return false;
         }
         return true;
@@ -119,7 +117,7 @@ public class Rubro implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ec.entidades.Rubro[ idRubro=" + idRubro + " ]";
+        return "com.ec.entidades.Rubro[ idrubroalcanzado=" + idrubroalcanzado + " ]";
     }
     
 }

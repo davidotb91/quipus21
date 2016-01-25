@@ -5,6 +5,7 @@
  */
 package com.ec.vistas;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class FacturaIngresos extends javax.swing.JInternalFrame {
     static int openFrameCount = 0;
     static final int xOffset = 100, yOffset = 30;
-    DefaultTableModel model = null;
+//    DefaultTableModel model = null;
 
     /**
      * Creates new form FacturaIngresos
@@ -29,7 +30,41 @@ public class FacturaIngresos extends javax.swing.JInternalFrame {
         //Set the window's location.
         setLocation(xOffset * openFrameCount, yOffset * openFrameCount);
         initComponents();
+//        CrearModeloTabla();
     }
+    
+    //metodos para llenar los cmapos 
+  public static DefaultTableModel modelo2;
+    private void CrearModeloTabla(){
+    try {
+    modelo2 = (new DefaultTableModel(
+    null, new String [] {
+    "id","Nombres",
+    "apellidos","direccion"}){
+    Class[] types = new Class [] {
+    java.lang.String.class,
+    java.lang.String.class,
+    java.lang.String.class,
+    java.lang.String.class
+    };
+    boolean[] canEdit = new boolean [] {
+    false,false,false,false
+    };
+    @Override
+    public Class getColumnClass(int columnIndex) {
+    return types [columnIndex];
+    }
+    @Override
+    public boolean isCellEditable(int rowIndex, int colIndex){
+    return canEdit [colIndex];
+    }
+    });
+    tblFactura.setModel(modelo2);
+    } catch (Exception e) {
+    JOptionPane.showMessageDialog(null,e.toString()+"error2");
+    }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +77,7 @@ public class FacturaIngresos extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        cmbProveedor = new javax.swing.JComboBox<String>();
+        cmbProveedor = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -62,19 +97,19 @@ public class FacturaIngresos extends javax.swing.JInternalFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        dgvUsuario = new javax.swing.JTable();
+        tblFactura = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
 
         jLabel2.setText("Proveedor:");
 
-        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbProveedorActionPerformed(evt);
@@ -152,7 +187,7 @@ public class FacturaIngresos extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Iva:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -248,32 +283,32 @@ public class FacturaIngresos extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        dgvUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        tblFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        dgvUsuario.setToolTipText("Haga doble clic en un registro para modificar ");
-        dgvUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblFactura.setToolTipText("Haga doble clic en un registro para modificar ");
+        tblFactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dgvUsuarioMouseClicked(evt);
+                tblFacturaMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                dgvUsuarioMousePressed(evt);
+                tblFacturaMousePressed(evt);
             }
         });
-        dgvUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+        tblFactura.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                dgvUsuarioKeyPressed(evt);
+                tblFacturaKeyPressed(evt);
             }
         });
-        jScrollPane1.setViewportView(dgvUsuario);
+        jScrollPane1.setViewportView(tblFactura);
 
         btnGuardar.setText("Guardar Factura");
 
@@ -342,11 +377,11 @@ public class FacturaIngresos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void dgvUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dgvUsuarioMouseClicked
+    private void tblFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFacturaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_dgvUsuarioMouseClicked
+    }//GEN-LAST:event_tblFacturaMouseClicked
 
-    private void dgvUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dgvUsuarioMousePressed
+    private void tblFacturaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFacturaMousePressed
         // TODO add your handling code here:
         if (evt.getClickCount() > 1) {
             //            UsuarioEditView vistaUsuario = new UsuarioEditView(new Usuario("1718264839", "e", "e", "33", "55", Double.NaN, "rrr", "rr", "tt"));
@@ -356,11 +391,11 @@ public class FacturaIngresos extends javax.swing.JInternalFrame {
 
         } else {
         }
-    }//GEN-LAST:event_dgvUsuarioMousePressed
+    }//GEN-LAST:event_tblFacturaMousePressed
 
-    private void dgvUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dgvUsuarioKeyPressed
+    private void tblFacturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblFacturaKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dgvUsuarioKeyPressed
+    }//GEN-LAST:event_tblFacturaKeyPressed
 
     private void cmbProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProveedorActionPerformed
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     // TODO add your handling code here:
@@ -371,7 +406,6 @@ public class FacturaIngresos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cmbProveedor;
-    private javax.swing.JTable dgvUsuario;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -398,6 +432,7 @@ public class FacturaIngresos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTable tblFactura;
     private javax.swing.JTextField txtNroFactura;
     // End of variables declaration//GEN-END:variables
 }

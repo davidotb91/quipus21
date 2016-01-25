@@ -13,7 +13,7 @@
     </Component>
     <Component class="javax.persistence.Query" name="query">
       <Properties>
-        <Property name="query" type="java.lang.String" value="SELECT p FROM Proveedor p"/>
+        <Property name="query" type="java.lang.String" value="SELECT f FROM Factura f"/>
         <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
           <ComponentRef name="entityManager"/>
         </Property>
@@ -31,7 +31,7 @@
         <Property name="observable" type="boolean" value="true"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.ec.entidades.Proveedor&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.ec.entidades.Factura&gt;"/>
         <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="2"/>
       </AuxValues>
@@ -65,15 +65,15 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="idProveedorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="rucProveedorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="nombreProveedorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="idFacturaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="idUsuarioLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="fechafacturaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="idProveedorField" alignment="0" pref="315" max="32767" attributes="0"/>
-                  <Component id="rucProveedorField" alignment="0" pref="315" max="32767" attributes="0"/>
-                  <Component id="nombreProveedorField" alignment="0" pref="315" max="32767" attributes="0"/>
+                  <Component id="idFacturaField" alignment="0" pref="315" max="32767" attributes="0"/>
+                  <Component id="idUsuarioField" alignment="0" pref="315" max="32767" attributes="0"/>
+                  <Component id="fechafacturaField" alignment="0" pref="315" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -91,18 +91,18 @@
               <Component id="masterScrollPane" pref="130" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="idProveedorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="idProveedorField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="idFacturaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="idFacturaField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="rucProveedorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="rucProveedorField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="idUsuarioLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="idUsuarioField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="nombreProveedorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nombreProveedorField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fechafacturaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fechafacturaField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="1"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -127,17 +127,17 @@
         <Component class="javax.swing.JTable" name="masterTable">
           <BindingProperties>
             <BindingProperty name="elements" source="list" target="masterTable" targetPath="elements" updateStrategy="0" immediately="false">
-              <Subbinding sourcePath="${idProveedor}">
+              <Subbinding sourcePath="${idFactura}">
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN" value="0"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
               </Subbinding>
-              <Subbinding sourcePath="${rucProveedor}">
+              <Subbinding sourcePath="${idUsuario}">
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN" value="1"/>
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="com.ec.entidades.Usuario.class"/>
               </Subbinding>
-              <Subbinding sourcePath="${nombreProveedor}">
+              <Subbinding sourcePath="${fechafactura}">
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN" value="2"/>
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
               </Subbinding>
             </BindingProperty>
           </BindingProperties>
@@ -148,43 +148,43 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="idProveedorLabel">
+    <Component class="javax.swing.JLabel" name="idFacturaLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Id Proveedor:"/>
+        <Property name="text" type="java.lang.String" value="Id Factura:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="rucProveedorLabel">
+    <Component class="javax.swing.JLabel" name="idUsuarioLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ruc Proveedor:"/>
+        <Property name="text" type="java.lang.String" value="Id Usuario:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="nombreProveedorLabel">
+    <Component class="javax.swing.JLabel" name="fechafacturaLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre Proveedor:"/>
+        <Property name="text" type="java.lang.String" value="Fechafactura:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="idProveedorField">
+    <Component class="javax.swing.JTextField" name="idFacturaField">
       <BindingProperties>
-        <BindingProperty name="text" source="masterTable" sourcePath="${selectedElement.idProveedor}" target="idProveedorField" targetPath="text" updateStrategy="0" immediately="false">
+        <BindingProperty name="text" source="masterTable" sourcePath="${selectedElement.idFactura}" target="idFacturaField" targetPath="text" updateStrategy="0" immediately="false">
           <Property name="incompletePathValue" type="java.lang.String" value="null"/>
         </BindingProperty>
-        <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="idProveedorField" targetPath="enabled" updateStrategy="1" immediately="false"/>
+        <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="idFacturaField" targetPath="enabled" updateStrategy="1" immediately="false"/>
       </BindingProperties>
     </Component>
-    <Component class="javax.swing.JTextField" name="rucProveedorField">
+    <Component class="javax.swing.JTextField" name="idUsuarioField">
       <BindingProperties>
-        <BindingProperty name="text" source="masterTable" sourcePath="${selectedElement.rucProveedor}" target="rucProveedorField" targetPath="text" updateStrategy="0" immediately="false">
+        <BindingProperty name="text" source="masterTable" sourcePath="${selectedElement.idUsuario}" target="idUsuarioField" targetPath="text" updateStrategy="0" immediately="false">
           <Property name="incompletePathValue" type="java.lang.String" value="null"/>
         </BindingProperty>
-        <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="rucProveedorField" targetPath="enabled" updateStrategy="1" immediately="false"/>
+        <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="idUsuarioField" targetPath="enabled" updateStrategy="1" immediately="false"/>
       </BindingProperties>
     </Component>
-    <Component class="javax.swing.JTextField" name="nombreProveedorField">
+    <Component class="javax.swing.JTextField" name="fechafacturaField">
       <BindingProperties>
-        <BindingProperty name="text" source="masterTable" sourcePath="${selectedElement.nombreProveedor}" target="nombreProveedorField" targetPath="text" updateStrategy="0" immediately="false">
+        <BindingProperty name="text" source="masterTable" sourcePath="${selectedElement.fechafactura}" target="fechafacturaField" targetPath="text" updateStrategy="0" immediately="false">
           <Property name="incompletePathValue" type="java.lang.String" value="null"/>
         </BindingProperty>
-        <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="nombreProveedorField" targetPath="enabled" updateStrategy="1" immediately="false"/>
+        <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="fechafacturaField" targetPath="enabled" updateStrategy="1" immediately="false"/>
       </BindingProperties>
     </Component>
     <Component class="javax.swing.JButton" name="saveButton">

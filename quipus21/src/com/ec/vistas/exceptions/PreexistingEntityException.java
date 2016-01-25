@@ -1,4 +1,4 @@
-package com.ec.servicios.exceptions;
+package com.ec.vistas.exceptions;
 
 public class PreexistingEntityException extends Exception {
     public PreexistingEntityException(String message, Throwable cause) {
